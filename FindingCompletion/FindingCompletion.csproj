@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Challenge1Tests.cs" />
-    <Compile Include="ConditionalBranchingFlow_Broadcast.cs" />
-    <Compile Include="ConditionalBranchingFlow_Failing.cs" />
-    <Compile Include="ConditionalBranchingFlow_Passing.cs" />
+    <Compile Include="Challenge2\Challenge2Tests.cs" />
+    <Compile Include="Challenge2\MultipleProducersFlow_Failing.cs" />
+    <Compile Include="Challenge1\Challenge1Tests.cs" />
+    <Compile Include="Challenge1\ConditionalBranchingFlow_Broadcast.cs" />
+    <Compile Include="Challenge1\ConditionalBranchingFlow_Failing.cs" />
+    <Compile Include="Challenge1\ConditionalBranchingFlow_Passing.cs" />
     <Compile Include="Dataflow.cs" />
     <Compile Include="DataflowEndpoints.cs" />
     <Compile Include="Message.cs" />
