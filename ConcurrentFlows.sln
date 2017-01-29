@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dataflow.Series.One", "Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeepingOrder", "KeepingOrder\KeepingOrder.csproj", "{2AE6596F-8B5A-4C4C-9348-0156893EF666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindingCompletion", "FindingCompletion\FindingCompletion.csproj", "{03683C8A-80EF-4942-947A-465C2C423883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03683C8A-80EF-4942-947A-465C2C423883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03683C8A-80EF-4942-947A-465C2C423883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03683C8A-80EF-4942-947A-465C2C423883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03683C8A-80EF-4942-947A-465C2C423883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
