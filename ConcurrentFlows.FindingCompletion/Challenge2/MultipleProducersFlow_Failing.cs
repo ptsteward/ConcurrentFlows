@@ -9,8 +9,8 @@
     public class MultipleProducersFlow : Dataflow<Message, Message> {
 
         private static Random rnd = new Random();
-        private static TransformBlock<Message, Message> negativeDataProducer;
-        private static TransformBlock<Message, Message> positiveDataProducer;
+        //private static TransformBlock<Message, Message> negativeDataProducer;
+        //private static TransformBlock<Message, Message> positiveDataProducer;
         private ActionBlock<Message> writeToConsole;
 
         public static CancellationTokenSource cancellationTokenSource { get; } = new CancellationTokenSource();

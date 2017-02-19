@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks.Dataflow;
 
-namespace Dataflow.Series.One {
+namespace ConcurrentFlows.EncapsulateDataflow {
     [TestFixture]
     public class CompositionRoot {
 

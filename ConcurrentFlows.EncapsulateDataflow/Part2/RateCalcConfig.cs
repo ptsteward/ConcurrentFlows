@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dataflow.Series.One.Part2 {
+namespace ConcurrentFlows.EncapsulateDataflow.Part2 {
 
     public class RateCalcConfig {
         public int Id { get; set; }

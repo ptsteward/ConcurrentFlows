@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
-namespace Dataflow.Series.One {
+namespace ConcurrentFlows.EncapsulateDataflow.Part2 {
 
     public abstract class Dataflow<TInput, TOutput> : IPropagatorBlock<TInput, TOutput> {
 

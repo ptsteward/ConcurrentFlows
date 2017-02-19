@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dataflow.Series.One", "Dataflow_Series_1\Dataflow.Series.One.csproj", "{0D6ABBE7-26EB-424B-A777-ED9F216F408F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentFlows.EncapsulateDataflow", "ConcurrentFlows.EncapsulateDataflow\ConcurrentFlows.EncapsulateDataflow.csproj", "{0D6ABBE7-26EB-424B-A777-ED9F216F408F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeepingOrder", "KeepingOrder\KeepingOrder.csproj", "{2AE6596F-8B5A-4C4C-9348-0156893EF666}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentFlows.FindingCompletion", "ConcurrentFlows.FindingCompletion\ConcurrentFlows.FindingCompletion.csproj", "{03683C8A-80EF-4942-947A-465C2C423883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindingCompletion", "FindingCompletion\FindingCompletion.csproj", "{03683C8A-80EF-4942-947A-465C2C423883}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentFlows.KeepingOrder", "ConcurrentFlows.KeepingOrder\ConcurrentFlows.KeepingOrder.csproj", "{2AE6596F-8B5A-4C4C-9348-0156893EF666}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentFlows.WrappingAsynchronousSource", "ConcurrentFlows.WrappingAsynchronousSource\ConcurrentFlows.WrappingAsynchronousSource.csproj", "{35A90E3B-CBCA-4E0C-8A15-9370CDA580A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{0D6ABBE7-26EB-424B-A777-ED9F216F408F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D6ABBE7-26EB-424B-A777-ED9F216F408F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D6ABBE7-26EB-424B-A777-ED9F216F408F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03683C8A-80EF-4942-947A-465C2C423883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03683C8A-80EF-4942-947A-465C2C423883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03683C8A-80EF-4942-947A-465C2C423883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03683C8A-80EF-4942-947A-465C2C423883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AE6596F-8B5A-4C4C-9348-0156893EF666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A90E3B-CBCA-4E0C-8A15-9370CDA580A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A90E3B-CBCA-4E0C-8A15-9370CDA580A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A90E3B-CBCA-4E0C-8A15-9370CDA580A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A90E3B-CBCA-4E0C-8A15-9370CDA580A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

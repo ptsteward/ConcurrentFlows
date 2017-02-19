@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
-namespace Dataflow.Series.One.Part2 {
+namespace ConcurrentFlows.EncapsulateDataflow {
 
     public abstract class Dataflow<TInput, TOutput> : IPropagatorBlock<TInput, TOutput> {
 
@@ -27,14 +27,14 @@ namespace Dataflow.Series.One.Part2 {
 
         public void Complete() {
             internalBlock.Complete();
-        }
-
-        public void Fault(Exception exception) {
-            internalBlock.Fault(exception);
-        }
+        }        
 
         public IDisposable LinkTo(ITargetBlock<TOutput> target, DataflowLinkOptions linkOptions) {
             return internalBlock.LinkTo(target, linkOptions);
+        }
+
+        void IDataflowBlock.Fault(Exception exception) {
+            internalBlock.Fault(exception);
         }
 
         DataflowMessageStatus ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader messageHeader, TInput messageValue, ISourceBlock<TInput> source, bool consumeToAccept) {

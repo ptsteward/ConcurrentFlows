@@ -8,12 +8,16 @@ using System.Threading.Tasks.Dataflow;
 using System.Linq;
 using System.Collections.Concurrent;
 
-namespace Dataflow.Series.One {
+namespace ConcurrentFlows.EncapsulateDataflow {
     public class RateCalcResult {
         public int Result { get; set; }
 
         public override bool Equals(object obj) {
             return ((RateCalcResult)obj).Result == this.Result;
+        }
+
+        public override int GetHashCode() {
+            return base.GetHashCode() ^ Result.GetHashCode();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Dataflow.Series.One {
+namespace ConcurrentFlows.EncapsulateDataflow {
     public class RateCalcConfig {
         public int SomeConfigurationProperty { get; set; }
     }

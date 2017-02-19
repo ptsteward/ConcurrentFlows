@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks.Dataflow;
 
-namespace Dataflow.Series.One {
+namespace ConcurrentFlows.EncapsulateDataflow {
     public class SomeDomainObject {
 
         private RateCalculator rateCalculator;

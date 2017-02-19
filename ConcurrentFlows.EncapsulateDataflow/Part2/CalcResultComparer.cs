@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dataflow.Series.One.Part2 {
+namespace ConcurrentFlows.EncapsulateDataflow.Part2 {
     class CalcResultComparer : IComparer {
         public int Compare(object x, object y) {
             var xIn = (RateCalcResult)x;

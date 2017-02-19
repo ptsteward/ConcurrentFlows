@@ -1,4 +1,4 @@
-﻿namespace KeepingOrder {
+﻿namespace ConcurrentFlows.KeepingOrder {
     using System;
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
@@ -70,7 +70,7 @@
             buffer.LinkTo(step1, linkOptions);
             step1.LinkTo(step2, linkOptions);
             finalStep = step2.AsObservable();
-            var finalStepSubscription = finalStep.Subscribe(
+            finalStepSubscription = finalStep.Subscribe(
                 x => {
                     Task.Delay(rnd.Next(100, 500)).Wait();
                     Console.WriteLine($"Final,{x.Id}");
