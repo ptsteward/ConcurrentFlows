@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
-
-namespace ConcurrentFlows.EncapsulateDataflow {
+﻿namespace ConcurrentFlows.EncapsulateDataflow {
+    using System;
+    using System.Threading.Tasks;
+    using System.Threading.Tasks.Dataflow;
 
     public abstract class Dataflow<TInput, TOutput> : IPropagatorBlock<TInput, TOutput> {
 
