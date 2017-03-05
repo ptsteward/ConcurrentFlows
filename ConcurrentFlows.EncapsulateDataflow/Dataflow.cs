@@ -9,48 +9,48 @@ namespace ConcurrentFlows.EncapsulateDataflow {
 
     public abstract class Dataflow<TInput, TOutput> : IPropagatorBlock<TInput, TOutput> {
 
-        private IPropagatorBlock<TInput, TOutput> internalBlock;
+        protected virtual IPropagatorBlock<TInput, TOutput> InternalBlock { get; }
 
         public Dataflow(Func<DataflowEndPoints<TInput, TOutput>> createDataflow)
             : this(createDataflow.Invoke()) {
         }
 
         public Dataflow(DataflowEndPoints<TInput, TOutput> endPoints) {
-            internalBlock = DataflowBlock.Encapsulate(endPoints.Input, endPoints.Output);
+            InternalBlock = DataflowBlock.Encapsulate(endPoints.Input, endPoints.Output);
         }
 
-        public Task Completion {
+        public virtual Task Completion {
             get {
-                return internalBlock.Completion;
+                return InternalBlock.Completion;
             }
         }
 
-        public void Complete() {
-            internalBlock.Complete();
-        }        
+        public virtual void Complete() {
+            InternalBlock.Complete();
+        }
 
-        public IDisposable LinkTo(ITargetBlock<TOutput> target, DataflowLinkOptions linkOptions) {
-            return internalBlock.LinkTo(target, linkOptions);
+        public virtual IDisposable LinkTo(ITargetBlock<TOutput> target, DataflowLinkOptions linkOptions) {
+            return InternalBlock.LinkTo(target, linkOptions);
         }
 
         void IDataflowBlock.Fault(Exception exception) {
-            internalBlock.Fault(exception);
+            InternalBlock.Fault(exception);
         }
 
         DataflowMessageStatus ITargetBlock<TInput>.OfferMessage(DataflowMessageHeader messageHeader, TInput messageValue, ISourceBlock<TInput> source, bool consumeToAccept) {
-            return internalBlock.OfferMessage(messageHeader, messageValue, source, consumeToAccept);
+            return InternalBlock.OfferMessage(messageHeader, messageValue, source, consumeToAccept);
         }
 
         TOutput ISourceBlock<TOutput>.ConsumeMessage(DataflowMessageHeader messageHeader, ITargetBlock<TOutput> target, out bool messageConsumed) {
-            return internalBlock.ConsumeMessage(messageHeader, target, out messageConsumed);
+            return InternalBlock.ConsumeMessage(messageHeader, target, out messageConsumed);
         }
 
         void ISourceBlock<TOutput>.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock<TOutput> target) {
-            internalBlock.ReleaseReservation(messageHeader, target);
+            InternalBlock.ReleaseReservation(messageHeader, target);
         }
 
         bool ISourceBlock<TOutput>.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<TOutput> target) {
-            return internalBlock.ReserveMessage(messageHeader, target);
+            return InternalBlock.ReserveMessage(messageHeader, target);
         }
     }
 }

@@ -1,93 +1,106 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
+﻿//namespace ConcurrentFlows.WrappingAsynchronousSource {
+//    using System;
+//    using System.Collections.Generic;
+//    using System.Linq;
+//    using System.Text;
+//    using System.Threading.Tasks;
+//    using System.Threading.Tasks.Dataflow;
 
-namespace FindingCompletion.Challenge2 {
-    public interface IProduce<T> : ISourceBlock<T> {
+//    using ConcurrentFlows.DataflowHelpers;
 
-        Task StartProducing();
-        void StopProducing();
-    }
+//    public interface IProduce<TInput, TResult> : ISourceBlock<TInput> {
 
-    public abstract class Producer : IProduce<int> {
+//        Task<TResult> Produce(TInput data);
+//    }    
 
-        private BufferBlock<int> InternalBuffer { get; }
-        private bool ShouldProduce { get; set; }
+//    public sealed class Job<TInput, TResult> {        
 
-        protected abstract int Minimum { get; }
-        protected abstract int Maximum { get; }
+//        public Job(TInput data) {
 
-        public Task Completion { get { return InternalBuffer.Completion; } }       
+//        }
+//    }
 
-        public Producer() {
-            this.InternalBuffer = new BufferBlock<int>();
-            this.ShouldProduce = false;
-        }
+//    public class JobHandler<TInput, TResult> : Dataflow<Job<TInput, TResult>, TResult> {
 
-        public async Task StartProducing() {
-            ShouldProduce = true;
-            await Task.Run(Produce);
-        }
+//    }
 
-        public void StopProducing() {
-            ShouldProduce = false;
-        }
+//    public abstract class Producer<TInput, TResult> : IProduce<KeyValuePair<TaskCompletionSource<TResult>, TInput>, <KeyValuePair<Guid, TResult>> {
 
-        private async Task Produce() {
-            var rnd = new Random();
-            while (ShouldProduce) {
-                await Task.Delay(rnd.Next(1000, 2000));
-                InternalBuffer.Post(rnd.Next(1, 100));
-            }
-        }
+//        private BufferBlock<>
+//        private Dataflow<KeyValuePair<Guid, TInput>, KeyValuePair<Guid, TResult>> ResultCalculator { get; }
+//        private bool ShouldProduce { get; set; }
 
-        public IDisposable LinkTo(ITargetBlock<int> target, DataflowLinkOptions linkOptions) {
-            return InternalBuffer.LinkTo(target, linkOptions);
-        }
+//        public Task Completion { get { return ResultCalculator.Completion; } }
 
-        public void Complete() {
-            InternalBuffer.Complete();
-        }
+//        public Producer(Dataflow<KeyValuePair<Guid, TInput>, KeyValuePair<Guid, TResult>> resultCalculator) {
+//            if (resultCalculator == null) { throw new ArgumentException("Argument cannot be null.", "resultCalculator"); }
 
-        void IDataflowBlock.Fault(Exception exception) {
-            ((ISourceBlock<int>)InternalBuffer).Fault(exception);
-        }
+//            this.ResultCalculator = resultCalculator;
+//            this.ShouldProduce = false;
+//        }
 
-        int ISourceBlock<int>.ConsumeMessage(DataflowMessageHeader messageHeader, ITargetBlock<int> target, out bool messageConsumed) {
-            return ((ISourceBlock<int>)InternalBuffer).ConsumeMessage(messageHeader, target, out messageConsumed);
-        }
+//        public async Task<TResult> Produce(TInput data) {
+//            var id = Guid.NewGuid();
+//            var dataWithId = new KeyValuePair<Guid, TInput>(id, data)
+//            await Task.Run(Produce);
+//        }
 
-        bool ISourceBlock<int>.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<int> target) {
-            return ((ISourceBlock<int>)InternalBuffer).ReserveMessage(messageHeader, target);
-        }
+//        public void StopProducing() {
+//            ShouldProduce = false;
+//        }
 
-        void ISourceBlock<int>.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock<int> target) {
-            ((ISourceBlock<int>)InternalBuffer).ReleaseReservation(messageHeader, target);
-        }
-    }
+//        private async Task Produce() {
+//            var rnd = new Random();
+//            while (ShouldProduce) {
+//                await Task.Delay(rnd.Next(1000, 2000));
+//                InternalBuffer.Post(rnd.Next(1, 100));
+//            }
+//        }
 
-    public class PositiveProducer : Producer {
+//        public IDisposable LinkTo(ITargetBlock<int> target, DataflowLinkOptions linkOptions) {
+//            return InternalBuffer.LinkTo(target, linkOptions);
+//        }
 
-        protected override int Maximum { get; }
-        protected override int Minimum { get; }
+//        public void Complete() {
+//            InternalBuffer.Complete();
+//        }
 
-        public PositiveProducer() {
-            this.Minimum = 1;
-            this.Maximum = 100;
-        }
-    }
+//        void IDataflowBlock.Fault(Exception exception) {
+//            ((ISourceBlock<int>)InternalBuffer).Fault(exception);
+//        }
 
-    public class NegativeProducer : Producer {
+//        int ISourceBlock<int>.ConsumeMessage(DataflowMessageHeader messageHeader, ITargetBlock<int> target, out bool messageConsumed) {
+//            return ((ISourceBlock<int>)InternalBuffer).ConsumeMessage(messageHeader, target, out messageConsumed);
+//        }
 
-        protected override int Maximum { get; }
-        protected override int Minimum { get; }
+//        bool ISourceBlock<int>.ReserveMessage(DataflowMessageHeader messageHeader, ITargetBlock<int> target) {
+//            return ((ISourceBlock<int>)InternalBuffer).ReserveMessage(messageHeader, target);
+//        }
 
-        public NegativeProducer() {
-            this.Minimum = -100;
-            this.Maximum = -1;
-        }
-    }
-}
+//        void ISourceBlock<int>.ReleaseReservation(DataflowMessageHeader messageHeader, ITargetBlock<int> target) {
+//            ((ISourceBlock<int>)InternalBuffer).ReleaseReservation(messageHeader, target);
+//        }
+//    }
+
+//    public class PositiveProducer : Producer {
+
+//        protected override int Maximum { get; }
+//        protected override int Minimum { get; }
+
+//        public PositiveProducer() {
+//            this.Minimum = 1;
+//            this.Maximum = 100;
+//        }
+//    }
+
+//    public class NegativeProducer : Producer {
+
+//        protected override int Maximum { get; }
+//        protected override int Minimum { get; }
+
+//        public NegativeProducer() {
+//            this.Minimum = -100;
+//            this.Maximum = -1;
+//        }
+//    }
+//}

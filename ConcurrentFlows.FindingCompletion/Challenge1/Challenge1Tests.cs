@@ -4,7 +4,8 @@
     using System.Threading.Tasks;    
     using System.Threading.Tasks.Dataflow;
 
-    using FindingCompletion.ConditionalBranches.Passing;
+    using ConcurrentFlows.FindingCompletion.ConditionalBranches.Passing;
+    using ConcurrentFlows.FindingCompletion;
 
     using NUnit.Framework;
 

@@ -1,4 +1,4 @@
-﻿namespace FindingCompletion {    
+﻿namespace ConcurrentFlows.FindingCompletion {    
 
     public class Message {
 

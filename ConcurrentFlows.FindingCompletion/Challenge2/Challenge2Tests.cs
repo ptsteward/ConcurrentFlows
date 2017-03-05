@@ -1,11 +1,11 @@
-﻿namespace FindingCompletion.MultipleProducers {
+﻿namespace ConcurrentFlows.FindingCompletion.DataflowLoop {
     using System;
     using System.Linq;
     using System.Threading.Tasks;    
     using System.Threading.Tasks.Dataflow;
 
-    using FindingCompletion.MultipleProducers.Failing;
-
+    using ConcurrentFlows.FindingCompletion.DataflowLoop.Failing;
+    using ConcurrentFlows.FindingCompletion;
     using NUnit.Framework;
 
     [TestFixture]

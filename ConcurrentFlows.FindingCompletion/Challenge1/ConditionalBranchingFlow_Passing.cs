@@ -1,9 +1,11 @@
-﻿namespace FindingCompletion.ConditionalBranches.Passing {
-    using ConcurrentFlows.Dataflow.Helpers;
+﻿namespace ConcurrentFlows.FindingCompletion.ConditionalBranches.Passing {    
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Threading.Tasks.Dataflow;
+
+    using ConcurrentFlows.EncapsulateDataflow;
+    using ConcurrentFlows.FindingCompletion;
 
     public class ConditionalBranchingFlow : Dataflow<Message, Message> {
 
@@ -26,7 +28,7 @@
                 MaxDegreeOfParallelism = Environment.ProcessorCount,
                 CancellationToken = cancellationTokenSource.Token
             });
-            this.internalBlock.LinkTo(writeToConsole, new DataflowLinkOptions() { PropagateCompletion = true });
+            this.InternalBlock.LinkTo(writeToConsole, new DataflowLinkOptions() { PropagateCompletion = true });
             FlowCompletion = writeToConsole.Completion;
         }
 
@@ -80,10 +82,7 @@
                 outputBuffer.Complete();
             });
 
-            return new DataflowEndPoints<Message, Message>() {
-                Input = buffer,
-                Output = outputBuffer
-            };
+            return new DataflowEndPoints<Message, Message>(buffer, outputBuffer);
         }
     }
 }

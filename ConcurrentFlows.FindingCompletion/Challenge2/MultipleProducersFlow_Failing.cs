@@ -1,10 +1,11 @@
-﻿namespace FindingCompletion.MultipleProducers.Failing {    
+﻿namespace ConcurrentFlows.FindingCompletion.DataflowLoop.Failing {    
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Threading.Tasks.Dataflow;
 
-    using ConcurrentFlows.Dataflow.Helpers;
+    using ConcurrentFlows.EncapsulateDataflow;
+    using ConcurrentFlows.FindingCompletion;
 
     public class MultipleProducersFlow : Dataflow<Message, Message> {
 
@@ -27,7 +28,7 @@
                 MaxDegreeOfParallelism = Environment.ProcessorCount,
                 CancellationToken = cancellationTokenSource.Token
             });
-            this.internalBlock.LinkTo(writeToConsole, new DataflowLinkOptions() { PropagateCompletion = true });
+            this.InternalBlock.LinkTo(writeToConsole, new DataflowLinkOptions() { PropagateCompletion = true });
             FlowCompletion = writeToConsole.Completion;
         }
 
@@ -47,10 +48,7 @@
 
             var outputBuffer = new BufferBlock<Message>();
 
-            return new DataflowEndPoints<Message, Message>() {
-                Input = buffer,
-                Output = outputBuffer
-            };
+            return new DataflowEndPoints<Message, Message>(buffer, outputBuffer);
         }
     }
 }

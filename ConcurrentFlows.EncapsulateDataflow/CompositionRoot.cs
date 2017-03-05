@@ -40,10 +40,7 @@ namespace ConcurrentFlows.EncapsulateDataflow {
             xform1.LinkTo(xform2, linkOptions);
             xform2.LinkTo(xform3, linkOptions);
 
-            return new DataflowEndPoints<RateCalcConfig, RateCalcResult>() {
-                Input = buffer,
-                Output = xform3
-            };
+            return new DataflowEndPoints<RateCalcConfig, RateCalcResult>(buffer, xform3);
         }
     }
 }
