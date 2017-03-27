@@ -36,6 +36,18 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net46\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.7.0\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
@@ -48,17 +60,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Challenge2\Challenge2Tests.cs" />
-    <Compile Include="Challenge2\CompleteDataflow.cs" />
-    <Compile Include="Challenge2\LoopDataflow.cs" />
-    <Compile Include="Challenge2\MultipleProducersFlow_Failing.cs" />
     <Compile Include="Challenge1\Challenge1Tests.cs" />
     <Compile Include="Challenge1\ConditionalBranchingFlow_Broadcast.cs" />
     <Compile Include="Challenge1\ConditionalBranchingFlow_Failing.cs" />
     <Compile Include="Challenge1\ConditionalBranchingFlow_Passing.cs" />
-    <Compile Include="Challenge2\Producers.cs" />
-    <Compile Include="Dataflow.cs" />
-    <Compile Include="DataflowEndpoints.cs" />
+    <Compile Include="Challenge2\LoopPropagateManyBlock.cs" />
+    <Compile Include="Challenge2\LoopDataflow5.cs" />
+    <Compile Include="Challenge2\LoopDataflow4.cs" />
+    <Compile Include="Challenge2\IReportIdle.cs" />
+    <Compile Include="Challenge2\LoopDataflow3.cs" />
+    <Compile Include="Challenge2\LoopDataflow2.cs" />
+    <Compile Include="Challenge2\LoopDataflow1.cs" />
+    <Compile Include="Challenge2\LoopDataflowTests.cs" />
+    <Compile Include="Challenge2\LoopPropagatorBlock.cs" />
+    <Compile Include="Challenge2\LoopPropagatorExtesnions.cs" />
+    <Compile Include="Challenge2\Message.cs" />
+    <Compile Include="ObservableDataflowTests.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
