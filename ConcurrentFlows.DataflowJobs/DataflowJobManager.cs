@@ -5,41 +5,22 @@
     using System.Threading.Tasks;
     using System.Threading.Tasks.Dataflow;
 
-    /// <summary>
-    /// A generic interface defining that:
-    /// for a specified input type => an awaitable result is produced.
-    /// </summary>
-    /// <typeparam name="TInput">The type of data to process.</typeparam>
-    /// <typeparam name="TOutput">The type of data the consumer expects back.</typeparam>
     public interface IJobManager<TInput, TOutput> {
         Task<TOutput> SubmitRequest(TInput data);
     }
 
-    /// <summary>
-    /// A TPL-Dataflow based job manager.
-    /// </summary>
-    /// <typeparam name="TInput">The type of data to process.</typeparam>
-    /// <typeparam name="TOutput">The type of data the consumer expects back.</typeparam>
     public class DataflowJobManager<TInput, TOutput> : IJobManager<TInput, TOutput> {
 
-        /// <summary>
-        /// It is anticipated that jobHandler is an injected
-        /// singleton instance of a Dataflow based 'calculator', though this implementation
-        /// does not depend on it being a singleton.
-        /// </summary>
-        /// <param name="jobHandler">A singleton Dataflow block through which all jobs are processed.</param>
         public DataflowJobManager(IPropagatorBlock<KeyValuePair<Guid, TInput>, KeyValuePair<Guid, TOutput>> jobHandler) {
             if (jobHandler == null) { throw new ArgumentException("Argument cannot be null.", "jobHandler"); }
                         
             this.JobHandler = JobHandler;
-            JobHandler.LinkTo(ResultHandler, new DataflowLinkOptions() { PropagateCompletion = true });
+            if (!AlreadyLinked) {
+                AlreadyLinked = true;
+                JobHandler.LinkTo(ResultHandler, new DataflowLinkOptions() { PropagateCompletion = true });
+            }            
         }
 
-        /// <summary>
-        /// Submits the request to the JobHandler and asynchronously awaits the result.
-        /// </summary>
-        /// <param name="data">The input data to be processd.</param>
-        /// <returns></returns>
         public async Task<TOutput> SubmitRequest(TInput data) {
             var taggedData = TagInputData(data);
             var job = CreateJob(taggedData);
@@ -47,6 +28,8 @@
             await JobHandler.SendAsync(taggedData);
             return await job.Value.Task;
         }
+
+        private static bool AlreadyLinked = false;
 
         private static ConcurrentDictionary<Guid, TaskCompletionSource<TOutput>> Jobs {
             get;
