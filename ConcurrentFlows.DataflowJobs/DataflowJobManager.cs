@@ -14,7 +14,7 @@
         public DataflowJobManager(IPropagatorBlock<KeyValuePair<Guid, TInput>, KeyValuePair<Guid, TOutput>> jobHandler) {
             if (jobHandler == null) { throw new ArgumentException("Argument cannot be null.", "jobHandler"); }
                         
-            this.JobHandler = JobHandler;
+            this.JobHandler = jobHandler;
             if (!AlreadyLinked) {
                 AlreadyLinked = true;
                 JobHandler.LinkTo(ResultHandler, new DataflowLinkOptions() { PropagateCompletion = true });
